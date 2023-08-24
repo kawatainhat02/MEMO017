@@ -33,5 +33,3 @@ nil: nil (a null-like value)
      (map inc)
      (filter even?))
 
-
-
