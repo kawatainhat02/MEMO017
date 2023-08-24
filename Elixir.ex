@@ -381,7 +381,11 @@ iex> head
 1
 
 
+iex> _
+** (CompileError) iex:1: invalid use of _. "_" represents a value to be ignored in a pattern and cannot be used in expressions
 
+iex> length([1, [2], 3]) = 3
+** (CompileError) iex:1: cannot invoke remote function :erlang.length/1 inside match
 
 
 
