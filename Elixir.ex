@@ -238,6 +238,153 @@ iex> elem(tuple, 1)
 "hello"
 
 
+iex> [1, 2, 3] ++ [4, 5, 6]
+[1, 2, 3, 4, 5, 6]
+iex> [1, 2, 3] -- [2]
+[1, 3]
+
+iex> "foo" <> "bar"
+"foobar"
+
+iex> true and true
+true
+iex> false or is_atom(:example)
+true
+
+iex> 1 and true
+** (BadBooleanError) expected a boolean on left-side of "and", got: 1
+
+iex> false and raise("This error will never be raised")
+false
+iex> true or raise("This error will never be raised")
+true
+
+# or
+iex> 1 || true
+1
+iex> false || 11
+11
+
+# and
+iex> nil && 13
+nil
+iex> true && 17
+17
+
+# not
+iex> !true
+false
+iex> !1
+false
+iex> !nil
+true
+
+iex> 1 == 1
+true
+iex> 1 != 2
+true
+iex> 1 < 2
+true
+
+iex> 1 == 1.0
+true
+iex> 1 === 1.0
+false
+
+iex> x = 1
+1
+iex> x
+1
+
+iex> x = 1
+1
+iex> 1 = x
+1
+iex> 2 = x
+** (MatchError) no match of right hand side value: 1
+
+
+iex> 1 = unknown
+** (CompileError) iex:1: undefined variable "unknown"
+
+iex> {a, b, c} = {:hello, "world", 42}
+{:hello, "world", 42}
+iex> a
+:hello
+iex> b
+"world"
+
+iex> {a, b, c} = {:hello, "world"}
+** (MatchError) no match of right hand side value: {:hello, "world"}
+
+iex> {a, b, c} = [:hello, "world", 42]
+** (MatchError) no match of right hand side value: [:hello, "world", 42]
+
+iex> {:ok, result} = {:ok, 13}
+{:ok, 13}
+iex> result
+13
+
+iex> {:ok, result} = {:error, :oops}
+** (MatchError) no match of right hand side value: {:error, :oops}
+
+iex> [a, b, c] = [1, 2, 3]
+[1, 2, 3]
+iex> [head | tail] = [1, 2, 3]
+[1, 2, 3]
+iex> head
+1
+iex> tail
+[2, 3]
+iex> a
+1
+
+iex> [head | tail] = []
+** (MatchError) no match of right hand side value: []
+
+iex> list = [1, 2, 3]
+[1, 2, 3]
+iex> [0 | list]
+[0, 1, 2, 3]
+
+iex> x = 1
+1
+iex> x = 2
+2
+
+iex> x = 1
+1
+iex> ^x = 2
+** (MatchError) no match of right hand side value: 2
+
+iex> 1 = 2
+** (MatchError) no match of right hand side value: 2
+iex> x = 1
+1
+iex> [^x, 2, 3] = [1, 2, 3]
+[1, 2, 3]
+iex> {y, ^x} = {2, 1}
+{2, 1}
+iex> y
+2
+iex> {y, ^x} = {2, 2}
+** (MatchError) no match of right hand side value: {2, 2}
+
+iex> {x, x} = {1, 1}
+{1, 1}
+iex> {x, x} = {1, 2}
+** (MatchError) no match of right hand side value: {1, 2}
+
+iex> [head | _] = [1, 2, 3]
+[1, 2, 3]
+iex> head
+1
+
+
+
+
+
+
 
 
 
